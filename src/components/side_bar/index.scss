@@ -1,0 +1,91 @@
+.navbar-primary {
+  background-color: #444;
+  transition: all 0.1s ease-in-out;
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.navbar-primary.collapsed {
+  width: 60px;
+}
+
+.navbar-primary.collapsed .glyphicon {
+  font-size: 22px;
+}
+
+.navbar-primary.collapsed .nav-label {
+  display: none;
+}
+
+.btn-expand-collapse {
+  position: absolute;
+  display: block;
+  left: 0;
+  bottom:-60px;
+  width: 100%;
+  padding: 8px 0;
+  border-top:solid 1px #666;
+  color: grey;
+  font-size: 20px;
+  text-align: center;
+  background-color: #333;
+
+  &:focus,
+  &:hover{
+    background-color: #222;
+    color: white;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: #111;
+  }
+}
+
+.navbar-primary-menu{
+  margin:0;
+  padding:0;
+  list-style: none;
+
+  li{
+    margin:0 0 1px;
+    list-style: none;
+    display: block;
+    padding: 10px 18px;
+    text-align: left;
+    background-color: #333;
+    color: #ccc;
+    cursor: pointer;
+    border-left: 0 solid transparent;
+    transition: .2s ease-in-out;
+
+    &:hover{
+      background-color: #000;
+      text-decoration: none;
+      color: white;
+
+      .glyphicon {
+        color: orchid;
+      }
+    }
+
+    &.active_filter{
+      background: #000;
+      border-left: 20px solid orchid;
+    }
+
+    .glyphicon {
+      margin-right: 10px;
+    }
+  }
+}
+
+.main-content {
+  margin-top: 60px;
+  margin-left: 200px;
+  padding: 20px;
+}
+
+.collapsed + .main-content {
+  margin-left: 60px;
+}

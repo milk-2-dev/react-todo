@@ -1,0 +1,59 @@
+.todo_list{
+
+}
+
+.todo_item{
+  position: relative;
+
+  &.hide_by_filter{
+    display: none;
+  }
+
+  .panel{
+    border:none;
+    padding: 15px;
+  }
+
+  .panel-heading{
+    background: none;
+    border: none;
+    font-size: 18px;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+
+  .panel-body{
+    padding: 0;
+    margin-bottom: 5px;
+
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+}
+
+.todo_item_vote{
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.vote_value{
+  margin-left:5px;
+}
+
+.todo_labels{
+  margin-left: 20px;
+}
+
+.label_item{
+  margin-right: 5px;
+  padding: 4px 8px;
+  border: 1px solid #333;
+  border-radius: 4px;
+
+  &:last-child{
+    margin-right:0;
+  }
+}
