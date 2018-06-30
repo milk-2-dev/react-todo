@@ -1,4 +1,9 @@
-import { ACTION_CREATE_NEW_TODO, ACTION_CREATE_NEW_TOPIC, ACTION_CHANGE_VOTE, ACTION_CHANGE_LABEL_FILTER_STATUS, ACTION_CHANGE_TODO_FILTER_STATUS } from '../index'
+import { ACTION_CREATE_NEW_TODO,
+        ACTION_CREATE_NEW_TOPIC,
+        ACTION_CHANGE_VOTE,
+  ACTION_SAVE_FILTER,
+  ACTION_CHANGE_LABEL_FILTER_STATUS,
+  ACTION_CHANGE_TODO_FILTER_STATUS } from '../index'
 
 const initialState  = {
     user:{
@@ -63,22 +68,8 @@ export const rootReducer = (state = initialState, action) => {
                 todoTopics: [...state.todoTopics, action.payload]
             };
         case ACTION_CHANGE_VOTE:
-            // return {
-            //     ...state,
-            //     todoItems: state.todoItems.map((item) =>
-            //     {
-            //         if (item.todoKey === action.todoKey)
-            //         {
-            //             return  item, {
-            //                 todoVotes: action.payload
-            //             }
-            //         }
-            //         return item
-            //     })
-            // };
             return Object.assign({}, state, {
                 todoItems: state.todoItems.map((item) => {
-                    // debugger
                     if (item.todoKey === action.todoKey) {
                         return Object.assign({}, item, {
                             todoVotes: action.payload
@@ -98,37 +89,51 @@ export const rootReducer = (state = initialState, action) => {
                         }
                         return item
                     }),
-                    filteredBy: [state.filteredBy, action.labelKey]
                 });
+
+            case ACTION_SAVE_FILTER:
+                return {
+                  ...state,
+                  filteredBy: action.payload
+                };
 
             case ACTION_CHANGE_TODO_FILTER_STATUS:
                 return Object.assign({}, state, {
                     todoItems: state.todoItems.map((todoItem) => {
-
                         if( action.filteredBy.length === 0 ){
                             return Object.assign({}, todoItem, {
                                 filterActive: 'showAll'
                             })
                         }
                         else {
-                            action.filteredBy.forEach(function(itemFilter) {
-                                debugger
-                                var test = todoItem.todoLabels.some(function(labelItem){return labelItem.id === itemFilter});
+                            let result = []
+                            action.filteredBy.forEach(function(itemFilter){
+                                var isLabelInPost = todoItem.todoLabels.some(function(labelItem){return labelItem.id === itemFilter});
 
-                                if(test){
-                                    todoItem.filterActive = true;
-                                    return
+                                if(isLabelInPost){
+                                  result.push(true)
                                 }
-
-                                todoItem.filterActive = false;
-                                return
-
+                                else{
+                                  result.push(false)
+                                }
                             });
+
+                            let isPostFiltered = result.some(function(resultItem){return resultItem === true})
+
+                            if(isPostFiltered){
+                              return Object.assign({}, todoItem, {
+                                filterActive: true
+                              })
+                            }
+                            else{
+                              return Object.assign({}, todoItem, {
+                                filterActive: false
+                              })
+                            }
                         }
 
                         return todoItem
                     }),
-                    filteredBy: action.filteredBy
                 });
 
         default:

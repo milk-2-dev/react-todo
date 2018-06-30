@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
-import { createNewTopic, changeLabelFilterStatus, changeTodoFilterStatus} from '../../store/actions.js'
+import { createNewTopic, changeLabelFilterStatus, changeTodoFilterStatus, saveFilters} from '../../store/actions.js'
 
 import { PageHeader, Modal, Button, FormGroup, ControlLabel, FormControl, Radio} from "react-bootstrap";
 
@@ -12,15 +12,18 @@ class Sidebar extends Component {
 
     state = {
         show: false,
-        labelIcon: ''
+        labelIcon: '',
+        filteredBy:[]
     };
 
     componentDidMount(){
-        this.stateFromApi('todoTopics')
+        this.stateFromApi('todoTopics', this.props.createNewTopicForProps);
+        this.stateFromApi('filteredBy', this.props.saveFiltersForProps);
     }
 
     componentWillReceiveProps(nextProps){
         this.stateToApi('todoTopics', nextProps.todoTopicsForProps);
+        this.stateToApi('filteredBy', nextProps.filteredByForProps);
     }
 
     onSubmit = (e) => {
@@ -46,11 +49,11 @@ class Sidebar extends Component {
         }
     };
 
-    stateFromApi = (paramName) =>{
+    stateFromApi = (paramName, action) =>{
         const apiParams = localStorage.getItem(paramName);
 
         if (apiParams) {
-            JSON.parse(apiParams).map(item => this.props.createNewTopicForProps(item))
+            JSON.parse(apiParams).map(item => action(item))
             return;
         }
     };
@@ -70,12 +73,7 @@ class Sidebar extends Component {
         let labelLinkClass = labelLink.className;
         let labelLinkName = labelLink.innerText;
 
-        if(labelLinkClass === 'active_filter'){
-            labelLink.className = '';
-        }
-        else{
-            labelLink.className = 'active_filter';
-        }
+        (labelLinkClass === 'active_filter') ? labelLink.className = '' : labelLink.className = 'active_filter';
 
         let labelItem = this.props.todoTopicsForProps.filter(function(item) {
             return item.label === labelLinkName
@@ -85,36 +83,8 @@ class Sidebar extends Component {
 
         this.changeLabelFilterStatus(labelItemId);
 
-        var filteredBy = [];
+        this.filterTodoByLabel(labelItemId);
 
-        if(this.props.filteredByForProps.length === 0){
-            filteredBy.push(labelItemId);
-        }
-        // else if(this.props.filteredByForProps.some(function(item){return item === labelItemId})){
-        //     this.props.filteredByForProps.forEach(function(item, i){
-        //         if(item === labelItemId){
-        //             return i
-        //         }
-        //     })
-        //
-        // }
-        else{
-            this.props.filteredByForProps.forEach(function(item, i){
-                if(item === labelItemId){
-                    //this.props.filteredByForProps.splice(i, 1)
-                }
-                else{
-                    filteredBy.push(item);
-                }
-            })
-
-            filteredBy.push(labelItemId);
-        }
-
-        // var filteredBy = [this.props.filteredByForProps, labelItemId];
-        debugger
-
-        this.filterTodoByLabel(filteredBy);
     };
 
     changeLabelFilterStatus = (labelItemId) =>{
@@ -123,9 +93,22 @@ class Sidebar extends Component {
 
     }
 
-    filterTodoByLabel = (filteredBy) =>{
+    filterTodoByLabel = (labelItemId) =>{
+        let isCoincidence = this.props.filteredByForProps.some((item) => item === labelItemId);
+        let newTopicsParam = []
 
-        this.props.changeTodoFilterStatusForProps(filteredBy)
+        if(isCoincidence){
+          newTopicsParam = this.props.filteredByForProps.filter(function(item){
+            return item !== labelItemId
+          })
+        } else{
+          newTopicsParam = [...this.props.filteredByForProps, labelItemId]
+        }
+
+        this.props.saveFiltersForProps(newTopicsParam)
+        this.props.changeTodoFilterStatusForProps(newTopicsParam)
+
+        newTopicsParam = []
 
     }
 
@@ -245,7 +228,8 @@ const putActionsToProps = (dispatch) => {
     return {
         createNewTopicForProps: bindActionCreators(createNewTopic, dispatch),
         changeLabelFilterStatusForProps: bindActionCreators(changeLabelFilterStatus, dispatch),
-        changeTodoFilterStatusForProps: bindActionCreators(changeTodoFilterStatus, dispatch)
+        changeTodoFilterStatusForProps: bindActionCreators(changeTodoFilterStatus, dispatch),
+        saveFiltersForProps: bindActionCreators(saveFilters, dispatch)
     }
 }
 
