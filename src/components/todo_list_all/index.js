@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 
-import { PageHeader, Modal, Button, FormGroup, ControlLabel, FormControl} from "react-bootstrap";
+import { PageHeader, Modal, FormGroup, ControlLabel, FormControl} from "react-bootstrap";
 import  MultiSelectReact  from 'multi-select-react';
 
 import { connect } from 'react-redux';
 import { createNewTodo, changeVote } from '../../store/actions.js'
+
+import Button from '@material-ui/core/Button';
 
 import './index.scss';
 
@@ -117,9 +119,9 @@ class TodoListAll extends Component{
                 </PageHeader>
 
                 <div className="add_new_todo">
-                    <button onClick={this.toggleModal}>
+                    <Button onClick={this.toggleModal} variant="fab" color="primary" aria-label="add">
                         <span className="glyphicon glyphicon-plus"></span>
-                    </button>
+                    </Button>
                 </div>
 
                 <TodoListItem enteries={todoItemsForProps} onVote={this.onClickVote}/>
