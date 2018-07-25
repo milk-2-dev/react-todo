@@ -1,15 +1,18 @@
-import React, {Component} from 'react';
-import { bindActionCreators } from 'redux';
+import React, {Component} from 'react'
+import { bindActionCreators } from 'redux'
 
-import { PageHeader, Modal, Button, FormGroup, ControlLabel, FormControl} from "react-bootstrap";
-import  MultiSelectReact  from 'multi-select-react';
+import { PageHeader, Modal, FormGroup, ControlLabel, FormControl} from "react-bootstrap"
 
-import { connect } from 'react-redux';
-import { createNewTodo, changeVote } from '../../store/actions.js'
+import  MultiSelectReact  from 'multi-select-react'
 
-import './index.scss';
+import { connect } from 'react-redux'
+import actions from '../../store/actions/index'
 
-import TodoListItem from './todo_list_item/index';
+import Button from '@material-ui/core/Button'
+
+import './index.scss'
+
+import TodoListItem from './todo_list_item/index'
 
 class TodoListAll extends Component{
     state = {
@@ -108,6 +111,7 @@ class TodoListAll extends Component{
             backgroundColor: "#dff0d8",
             color: "#3c763d"
         };
+
         const {todoItemsForProps, todoTopicsForProps} = this.props;
 
         return(
@@ -117,9 +121,9 @@ class TodoListAll extends Component{
                 </PageHeader>
 
                 <div className="add_new_todo">
-                    <button onClick={this.toggleModal}>
+                    <Button onClick={this.toggleModal} variant="fab" color="primary" aria-label="add">
                         <span className="glyphicon glyphicon-plus"></span>
-                    </button>
+                    </Button>
                 </div>
 
                 <TodoListItem enteries={todoItemsForProps} onVote={this.onClickVote}/>
@@ -189,14 +193,14 @@ const putStateToProps = (state) => {
     return {
         todoItemsForProps: state.todoItems,
         todoUserForProps: state.user,
-        todoTopicsForProps: state.todoTopics
+        todoTopicsForProps: state.oldReducer.todoTopics
     }
 }
 
 const putActionsToProps = (dispatch) => {
     return {
-        createNewTodoForProps: bindActionCreators(createNewTodo, dispatch),
-        changeVoteForProps: bindActionCreators(changeVote, dispatch)
+        createNewTodoForProps: bindActionCreators(actions.todo.createNewTodo, dispatch),
+        changeVoteForProps: bindActionCreators(actions.todo.changeVote, dispatch)
     }
 }
 

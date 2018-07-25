@@ -1,29 +1,13 @@
-import { ACTION_CREATE_NEW_TODO,
+import {
   ACTION_CREATE_NEW_TOPIC,
-  ACTION_CHANGE_VOTE,
   ACTION_SAVE_FILTER,
   ACTION_CHANGE_LABEL_FILTER_STATUS,
   ACTION_CHANGE_TODO_FILTER_STATUS } from '../index';
-
-export const createNewTodo = (newWallet) => {
-    return {
-        type: ACTION_CREATE_NEW_TODO,
-        payload: newWallet
-    }
-};
 
 export const createNewTopic = (newTopic) => {
     return {
         type: ACTION_CREATE_NEW_TOPIC,
         payload: newTopic
-    }
-};
-
-export const changeVote = (newTodoVotes, todoKey) => {
-    return {
-        type: ACTION_CHANGE_VOTE,
-        payload: newTodoVotes,
-        todoKey: todoKey
     }
 };
 

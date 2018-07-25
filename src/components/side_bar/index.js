@@ -2,11 +2,35 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
-import { createNewTopic, changeLabelFilterStatus, changeTodoFilterStatus, saveFilters} from '../../store/actions.js'
+import {
+    createNewTopic,
+  changeLabelFilterStatus,
+  changeTodoFilterStatus,
+  saveFilters
+} from '../../store/actions.js'
 
-import { PageHeader, Modal, Button, FormGroup, ControlLabel, FormControl, Radio} from "react-bootstrap";
+import { PageHeader, Modal, FormGroup, ControlLabel, FormControl, Radio} from "react-bootstrap";
+import compose from 'recompose/compose';
+
+
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
 
 import './index.scss'
+
+const styles = theme => ({
+  button: {
+    // margin: theme.spacing.unit,
+    position: 'absolute',
+    padding: '8px 0',
+    fontSize: '20px'
+
+  },
+  input: {
+    display: 'none',
+  }
+});
 
 class Sidebar extends Component {
 
@@ -125,7 +149,8 @@ class Sidebar extends Component {
     }
 
     render(){
-        let topicLabels = this.props.todoTopicsForProps.map(this.showTopicLabels);
+      let topicLabels = this.props.todoTopicsForProps.map(this.showTopicLabels);
+      const { classes } = this.props;
 
         return(
             <aside id="left_sidebar">
@@ -134,7 +159,10 @@ class Sidebar extends Component {
                 </PageHeader>
 
                 <nav className="navbar-primary">
-                    <button onClick={this.toggleModal} className="btn-expand-collapse">add new topic</button>
+                    {/*<button onClick={this.toggleModal} className="btn-expand-collapse">add new topic</button>*/}
+
+                    <Button onClick={this.toggleModal} variant="outlined" className={`btn-expand-collapse ${classes.button}`}>add new topic</Button>
+
                     <ul className="navbar-primary-menu">
                         {topicLabels}
                     </ul>
@@ -204,7 +232,6 @@ class Sidebar extends Component {
                     <Modal.Footer>
                         <Button
                             block
-                            bsSize="large"
                             type="submit"
                             form="new_topic_form"
                         >
@@ -219,8 +246,8 @@ class Sidebar extends Component {
 
 const putStateToProps = (state) => {
     return {
-        todoTopicsForProps: state.todoTopics,
-        filteredByForProps: state.filteredBy
+        todoTopicsForProps: state.oldReducer.todoTopics,
+        filteredByForProps: state.oldReducer.filteredBy
     }
 }
 
@@ -233,4 +260,7 @@ const putActionsToProps = (dispatch) => {
     }
 }
 
-export default  connect(putStateToProps, putActionsToProps)(Sidebar);
+export default compose(
+  withStyles(styles),
+  connect(putStateToProps, putActionsToProps)
+)(Sidebar);

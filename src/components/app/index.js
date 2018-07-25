@@ -6,7 +6,7 @@ import './index.scss'
 
 import Header from '../header/index.js';
 import Sidebar from '../side_bar/index.js';
-import TodoListAll from '../todo_list_all/index.js';
+import TodoListAll from '../todo_list_all/index.jsx';
 
 
 class App extends Component {
