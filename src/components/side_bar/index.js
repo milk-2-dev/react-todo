@@ -245,9 +245,10 @@ class Sidebar extends Component {
 }
 
 const putStateToProps = (state) => {
+  debugger
     return {
-        todoTopicsForProps: state.oldReducer.todoTopics,
-        filteredByForProps: state.oldReducer.filteredBy
+        todoTopicsForProps: state.todoTopics,
+        filteredByForProps: state.filteredBy
     }
 }
 

@@ -1,8 +1,4 @@
 import {
-  //ACTION_CREATE_NEW_TODO,
-  ACTION_CREATE_NEW_TOPIC,
-  //ACTION_CHANGE_VOTE,
-  ACTION_SAVE_FILTER,
   ACTION_CHANGE_LABEL_FILTER_STATUS,
   ACTION_CHANGE_TODO_FILTER_STATUS
 } from '../../index'
@@ -14,11 +10,6 @@ const initialState  = {
 
 const oldReducer = (state = initialState, action) => {
   switch(action.type){
-    case ACTION_CREATE_NEW_TOPIC:
-      return {
-        ...state,
-        todoTopics: [...state.todoTopics, action.payload]
-      }
     case ACTION_CHANGE_LABEL_FILTER_STATUS:
       return Object.assign({}, state, {
         todoTopics: state.todoTopics.map((item) => {
@@ -30,11 +21,6 @@ const oldReducer = (state = initialState, action) => {
           return item
         }),
       });
-    case ACTION_SAVE_FILTER:
-      return {
-        ...state,
-        filteredBy: action.payload
-      };
     case ACTION_CHANGE_TODO_FILTER_STATUS:
       return Object.assign({}, state, {
         todoItems: state.todoItems.map((todoItem) => {
@@ -73,7 +59,6 @@ const oldReducer = (state = initialState, action) => {
           return todoItem
         }),
       });
-
     default:
       return { ...state }
   }
