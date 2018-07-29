@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
-
 import { connect } from 'react-redux';
-import {
-    createNewTopic,
-  changeLabelFilterStatus,
-  changeTodoFilterStatus,
-  saveFilters
-} from '../../store/actions.js'
+//import {
+//    createNewTopic,
+//  changeLabelFilterStatus,
+//  changeTodoFilterStatus,
+//  saveFilters
+//} from '../../store/actions.js'
+
+import actions from '../../store/actions/index.jsx'
 
 import { PageHeader, Modal, FormGroup, ControlLabel, FormControl, Radio} from "react-bootstrap";
 import compose from 'recompose/compose';
@@ -118,6 +119,7 @@ class Sidebar extends Component {
     }
 
     filterTodoByLabel = (labelItemId) =>{
+        debugger
         let isCoincidence = this.props.filteredByForProps.some((item) => item === labelItemId);
         let newTopicsParam = []
 
@@ -175,7 +177,7 @@ class Sidebar extends Component {
                     <Modal.Body>
                         <div className="create_new_topic">
                             <form id="new_topic_form" onSubmit={this.onSubmit}>
-                                <FormGroup controlId="topic_name" bsSize="large">
+                                <FormGroup controlId="topic_name">
                                     <ControlLabel>Todo title</ControlLabel>
                                     <FormControl
                                         autoFocus
@@ -231,7 +233,6 @@ class Sidebar extends Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button
-                            block
                             type="submit"
                             form="new_topic_form"
                         >
@@ -245,7 +246,6 @@ class Sidebar extends Component {
 }
 
 const putStateToProps = (state) => {
-  debugger
     return {
         todoTopicsForProps: state.todoTopics,
         filteredByForProps: state.filteredBy
@@ -254,10 +254,10 @@ const putStateToProps = (state) => {
 
 const putActionsToProps = (dispatch) => {
     return {
-        createNewTopicForProps: bindActionCreators(createNewTopic, dispatch),
-        changeLabelFilterStatusForProps: bindActionCreators(changeLabelFilterStatus, dispatch),
-        changeTodoFilterStatusForProps: bindActionCreators(changeTodoFilterStatus, dispatch),
-        saveFiltersForProps: bindActionCreators(saveFilters, dispatch)
+        createNewTopicForProps: bindActionCreators(actions.topic.createNewTopic, dispatch),
+        changeLabelFilterStatusForProps: bindActionCreators(actions.topic.changeLabelFilterStatus, dispatch),
+        changeTodoFilterStatusForProps: bindActionCreators(actions.todo.changeTodoFilterStatus, dispatch),
+        saveFiltersForProps: bindActionCreators(actions.filter.addNewfilter, dispatch)
     }
 }
 

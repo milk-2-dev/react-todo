@@ -5,7 +5,7 @@ import './index.scss';
 
 export default class TodoListItem extends Component{
     createTodoItem = (item) => {
-        // debugger
+        debugger
         let todoLabelItem = item.todoLabels.map(this.todoLabels);
         let todoShowByFilter = item.filterActive;//false
         let todoFilterClassName = (todoShowByFilter === false) ? 'hide_by_filter' : '';

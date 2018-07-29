@@ -2,17 +2,26 @@
 
 import * as types from './types'
 
-export const createNewTodo = (newWallet) => {
+export const createNewTodo = (newTodo) => {
   return {
     type: types.createNewTodo.value,
-    payload: newWallet
+    payload: newTodo
   }
-};
+}
 
 export const changeVote = (newTodoVotes, todoKey) => {
   return {
     type: types.changeVote.value,
-    payload: newTodoVotes,
-    todoKey: todoKey
+    payload: {
+      newTodoVotes: newTodoVotes,
+      todoKey: todoKey
+    }
+  }
+}
+
+export const changeTodoFilterStatus = (filteredBy) => {
+  return {
+    type: types.changeTodoFilterStatus.value,
+    payload: filteredBy
   }
 };

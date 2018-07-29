@@ -8,3 +8,10 @@ export const createNewTopic = (newTopic) => {
     payload: newTopic
   }
 };
+
+export const changeLabelFilterStatus = (labelKey) => {
+  return {
+    type: types.changeLabelFilterStatus.value,
+    payload: labelKey
+  }
+};

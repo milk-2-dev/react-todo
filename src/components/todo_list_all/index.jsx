@@ -25,11 +25,11 @@ class TodoListAll extends Component{
     }
 
     componentWillReceiveProps(nextProps){
+        debugger
         this.stateToApi('todoItems', nextProps.todoItemsForProps);
     }
 
     onClickVote = (e) => {
-
         let todoId = Number(e.currentTarget.attributes.datatodoid.nodeValue);
         let ourTodo = this.props.todoItemsForProps.filter(function(item) {
             return item.todoKey === todoId;
@@ -56,6 +56,7 @@ class TodoListAll extends Component{
     }
 
     onSubmit = (e) => {
+        debugger
         e.preventDefault();
 
         if(this._inputTodoTitle.value !== '' & this._inputTodoDesc.value !== ''){
@@ -88,9 +89,10 @@ class TodoListAll extends Component{
     };
 
     stateFromApi = (paramName) =>{
+      debugger
         const apiParams = localStorage.getItem(paramName);
 
-        if (apiParams) {
+        if (apiParams && apiParams.length > 0) {
             JSON.parse(apiParams).map(item => this.props.createNewTodoForProps(item))
             return;
         }
@@ -112,7 +114,7 @@ class TodoListAll extends Component{
             color: "#3c763d"
         };
 
-        const {todoItemsForProps, todoTopicsForProps} = this.props;
+        const {todoItemsForProps} = this.props;
 
         return(
             <section id="todo_list_all">
@@ -135,7 +137,7 @@ class TodoListAll extends Component{
                     <Modal.Body>
                         <div className="create_new_wallet">
                             <form id="new_wallet_form" onSubmit={this.onSubmit}>
-                                <FormGroup controlId="wallet_name" bsSize="large">
+                                <FormGroup controlId="wallet_name">
                                     <ControlLabel>Todo title</ControlLabel>
                                     <FormControl
                                         autoFocus
@@ -167,8 +169,6 @@ class TodoListAll extends Component{
                     </Modal.Body>
                     <Modal.Footer>
                         <Button
-                            block
-                            bsSize="large"
                             type="submit"
                             form="new_wallet_form"
                         >
@@ -193,7 +193,7 @@ const putStateToProps = (state) => {
     return {
         todoItemsForProps: state.todoItems,
         todoUserForProps: state.user,
-        todoTopicsForProps: state.oldReducer.todoTopics
+        todoTopicsForProps: state.todoTopics
     }
 }
 
