@@ -10,7 +10,6 @@ const todoTopics = (state = initialState, action) => {
       return [...state, payload]
 
     case types.topic.changeLabelFilterStatus.value:
-      debugger
       return state.map((item) => {
         if (item.id === payload) {
           item.filteredByLabel = !item.filteredByLabel

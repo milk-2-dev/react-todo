@@ -119,7 +119,6 @@ class Sidebar extends Component {
     }
 
     filterTodoByLabel = (labelItemId) =>{
-        debugger
         let isCoincidence = this.props.filteredByForProps.some((item) => item === labelItemId);
         let newTopicsParam = []
 

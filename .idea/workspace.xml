@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840b2027-0171-440a-900b-14ca3cfe872f" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/app/index.js" afterPath="$PROJECT_DIR$/src/scenes/app/index.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/app/index.scss" afterPath="$PROJECT_DIR$/src/scenes/app/index.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/side_bar/index.js" afterPath="$PROJECT_DIR$/src/components/side_bar/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/todo_list_all/index.jsx" afterPath="$PROJECT_DIR$/src/components/todo_list_all/index.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/todo_list_all/todo_list_item/index.js" afterPath="$PROJECT_DIR$/src/components/todo_list_all/todo_list_item/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/reducers/todo/index.js" afterPath="$PROJECT_DIR$/src/store/reducers/todo/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/reducers/topics/index.js" afterPath="$PROJECT_DIR$/src/store/reducers/topics/index.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,8 +37,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/scenes/app/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="42" lean-forward="true" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+            <state relative-caret-position="255">
+              <caret line="17" column="22" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -489,11 +491,18 @@
       <option name="project" value="LOCAL" />
       <updated>1532854390945</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="change app architecture">
+      <created>1532854423185</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1532854423185</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="207476000" />
+    <option name="totallyTimeSpent" value="207562000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -514,7 +523,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3207024" sideWeight="0.50479233" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286445" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29028133" sideWeight="0.49627262" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29028133" sideWeight="0.49627262" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2084399" sideWeight="0.49520767" order="10" side_tool="false" content_ui="tabs" />
@@ -540,7 +549,8 @@
     <MESSAGE value="make more reducers" />
     <MESSAGE value="refactor all, but not filtering" />
     <MESSAGE value="delete old code" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete old code" />
+    <MESSAGE value="change app architecture" />
+    <option name="LAST_COMMIT_MESSAGE" value="change app architecture" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -731,9 +741,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="254" column="11" lean-forward="false" selection-start-line="254" selection-start-column="11" selection-end-line="254" selection-end-column="11" />
-          <folding>
-            <element signature="e#264#315#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -741,10 +749,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding>
-            <element signature="e#1832#2928#0" expanded="false" />
-            <element signature="e#2958#3066#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -856,8 +861,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/scenes/app/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="42" lean-forward="true" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+        <state relative-caret-position="255">
+          <caret line="17" column="22" lean-forward="true" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

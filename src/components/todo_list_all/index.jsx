@@ -25,7 +25,6 @@ class TodoListAll extends Component{
     }
 
     componentWillReceiveProps(nextProps){
-        debugger
         this.stateToApi('todoItems', nextProps.todoItemsForProps);
     }
 
@@ -56,7 +55,6 @@ class TodoListAll extends Component{
     }
 
     onSubmit = (e) => {
-        debugger
         e.preventDefault();
 
         if(this._inputTodoTitle.value !== '' & this._inputTodoDesc.value !== ''){
@@ -89,7 +87,6 @@ class TodoListAll extends Component{
     };
 
     stateFromApi = (paramName) =>{
-      debugger
         const apiParams = localStorage.getItem(paramName);
 
         if (apiParams && apiParams.length > 0) {

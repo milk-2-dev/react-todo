@@ -10,7 +10,6 @@ const todoItems = (state = initialState, action) => {
       return [...state, payload]
 
     case types.todo.changeVote.value:
-      debugger
       return state.map((item) => {
         if (item.todoKey === payload.todoKey) {
           item.todoVotes = payload.newTodoVotes
@@ -21,7 +20,6 @@ const todoItems = (state = initialState, action) => {
 
     case types.todo.changeTodoFilterStatus.value:
       return state.map((item) => {
-        debugger
         if( payload.length === 0 ){
           return item.filterActive = 'showAll'
         }
@@ -29,7 +27,6 @@ const todoItems = (state = initialState, action) => {
           let result = []
 
           payload.forEach(function(itemFilter){
-            debugger
             var isLabelInPost = item.todoLabels.some(function(labelItem){return labelItem.id === itemFilter});
 
             if(isLabelInPost){
