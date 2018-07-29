@@ -4,9 +4,9 @@ import { Grid, Row, Col} from "react-bootstrap";
 
 import './index.scss'
 
-import Header from '../header/index.js';
-import Sidebar from '../side_bar/index.js';
-import TodoListAll from '../todo_list_all/index.jsx';
+import Header from '../../components/header/index.js';
+import Sidebar from '../../components/side_bar/index.js';
+import TodoListAll from '../../components/todo_list_all/index.jsx';
 
 
 class App extends Component {
